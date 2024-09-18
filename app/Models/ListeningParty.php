@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Episode;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ListeningParty extends Model
 {
@@ -16,7 +17,7 @@ class ListeningParty extends Model
         'is_active' => 'boolean',
         'starts_time' => 'datetime',
         'ends_time' => 'datetime',
-    ]
+    ];
 
     public function episode(): BelongsTo
     {
