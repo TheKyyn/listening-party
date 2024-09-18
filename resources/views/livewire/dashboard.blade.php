@@ -3,6 +3,7 @@
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use App\Models\ListeningParty;
+use App\Models\Episode;
 
 new class extends Component {
     #[Validate('required|string|max:255')]
@@ -27,6 +28,8 @@ new class extends Component {
             'episode_id' => $episode->id,
             'start_time' => $this->startTime,
         ]);
+
+        return redirect()->route('parties.show', $listeningParty);
     }
 
     public function with()
@@ -41,9 +44,9 @@ new class extends Component {
     <div class="max-w-lg w-full px-4">
         <form wire:submit='createListeningParty' class="space-y-6">
             <x-input wire:model='name' placeholder="Listening Party Name" />
-            <x-input wire:model="mediaUrl" placeholder="Podcast Episode URL"
-                description="Direct Episode Link or Youtube Link, RSS Feeds will grab the latest Episode." />
-            <x-datetime-picker wire:model='startTime' placeholder="Listening Party : Start Time" />
+            <x-input wire:model="mediaUrl" placeholder="Podcast RSS Feed URL"
+                description="Entering the RSS Feed URL will grab the latest episode" />
+            <x-datetime-picker wire:model='startTime' placeholder="Listening Party : Start Time" :min="now()->subDays(1)" />
             <x-button type="submit">{{ __('Create a Listening Party') }}</x-button>
         </form>
     </div>
