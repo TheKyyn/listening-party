@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Podcast extends Model
+class Episodes extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function episodes(): HasMany
+    public function podcast(): BelongsTo
     {
-        return $this->hasMany(Episode::class);
+        return $this->belongsTo(Podcast::class);
     }
 
     public function listeningParties(): HasMany
